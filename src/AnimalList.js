@@ -30,7 +30,7 @@ const AnimalList = () => {
             id: 5,
             species: 'Fish',
             name: 'Goldy',
-            birth: new Date()
+            birth: ''
         }
 
     ]
@@ -40,8 +40,8 @@ const AnimalList = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>species</th>
-                        <th>name</th>
+                        <th>Species</th>
+                        <th>Name</th>
                         <th>Date of birth</th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@ const AnimalList = () => {
                             <td>
                                 {animal.species}</td>
                             <td> {animal.name}</td>
-                            <td>{animal.birth.toLocaleString()}</td>
+                            <td>{animal.birth ? animal.birth.toLocaleString() : 'unknown'}</td>
                         </tr>
                     ))}
                 </tbody>

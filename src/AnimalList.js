@@ -49,8 +49,55 @@ const AnimalList = () => {
             ...animals.slice(animalIndex + 1)]);
     }
 
+    const [enteredSpecies, setEnteredSpecies] = useState('');
+    const [enteredName, setEnteredName] = useState('');
+    const [enteredDate, setEnteredDate] = useState('');
+
+
+    const speciesHandler = (event) => {
+        setEnteredSpecies(event.target.value)
+    }
+
+    const nameHandler = (event) => {
+        setEnteredName(event.target.value)
+    }
+    const ageHandler = (event) => {
+        setEnteredDate(event.target.value)
+    }
+    const submitHandler = (event) => {
+        event.preventDefault();
+        const animalsNew = {
+            id: Math.random(),
+            species: enteredSpecies,
+            name: enteredName,
+            birth: enteredDate
+        };
+        setAnimal([...animals, animalsNew]);
+        setEnteredSpecies('');
+        setEnteredName('');
+        setEnteredDate('');
+    }
+
     return (
         <div>
+            <h2>Enter new animal:</h2>
+            <form onSubmit={submitHandler}>
+                <div>
+                    <div>
+                        <label>Enter Species</label>
+                        <input type='text' value={enteredSpecies} onChange={speciesHandler} />
+                    </div>
+                    <div>
+                        <label>Enter Name</label>
+                        <input type='text' value={enteredName} onChange={nameHandler} />
+                    </div>
+                    <div>
+                        <label>Enter date of birth</label>
+                        <input type='date' value={enteredDate} onChange={ageHandler} />
+                    </div>
+                </div>
+                <button type='submit'>Add animal</button>
+            </form>
             <h2>List of animals:</h2>
             <table>
                 <thead>
